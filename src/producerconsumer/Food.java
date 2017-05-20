@@ -1,6 +1,6 @@
 
 package producerconsumer;
 
-public class Food {
-    
+public interface Food {
+    void getName();
 }
