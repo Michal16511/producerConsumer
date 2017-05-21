@@ -5,9 +5,9 @@ public class Apple implements Food {
     private String name;
     private int number;
     
-    public Apple(String name, int number)
+    public Apple(int number)
     {
-        this.name = name;
+        this.name = "Apple";
         this.number = number;
     }
     @Override

@@ -5,9 +5,9 @@ public class Raspberry implements Food{
     private String name;
     private int number;
     
-    public Raspberry(String name, int number)
+    public Raspberry(int number)
     {
-        this.name = name;
+        this.name = "Raspberry";
         this.number = number;
     }
     @Override

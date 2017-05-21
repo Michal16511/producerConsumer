@@ -5,9 +5,9 @@ public class Banana implements Food{
     private String name;
     private int number;
     
-    public Banana(String name, int number)
+    public Banana(int number)
     {
-        this.name = name;
+        this.name = "Banana";
         this.number = number;
     }
     @Override
