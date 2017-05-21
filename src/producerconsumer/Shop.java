@@ -2,13 +2,16 @@
 package producerconsumer;
 
 import java.util.LinkedList;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class Shop {
     
-    private LinkedList<Food> list = new LinkedList<Food>();
+    private BlockingQueue<Food> list = new LinkedBlockingQueue<Food>(25);
     private int max = 25;
     private int amount = 0;
     private Food food;
@@ -26,30 +29,23 @@ public class Shop {
             
     public synchronized void getProduct(int id)
     {
-        if(list.isEmpty())
-        {
-            try{
-                wait();
-            } catch (InterruptedException ex) {}
-        }
-        
-        food = list.removeLast();
-        System.out.print("Watek numer " + id + " zjadlem: ");food.getName();
-        notify();
         try {
-            wait();
+            food = list.poll(5,TimeUnit.MICROSECONDS);
+            System.out.print("Watek numer " + id + " zjadlem produkt numer: " + food.getId());food.getName();
         } catch (InterruptedException ex) {}
+          catch (NullPointerException e){}
+        
     }
     
    public synchronized void putProduct()
    {
-        while(list.size() != max){
-            amount += 1;
-            System.out.print("Wyprodukowalem " + amount + " produkt: ");
-            food = factory.getFood();
-            food.getName();
-            list.addFirst(food);
-        }
-        notify();
+       amount += 1;
+       System.out.print("Wyprodukowalem produkt numer: "  + amount);
+       food = factory.getFood();
+       food.getName();
+       try {
+           list.put(food);
+       } catch (InterruptedException ex) {}
+       
    }
 }

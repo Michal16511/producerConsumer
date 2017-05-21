@@ -14,6 +14,13 @@ public class Producer implements Runnable {
     @Override
     public void run()
     {
-        shop.putProduct();
+        while(true)
+        {
+            shop.putProduct();
+            
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {}
+        }
     }
 }

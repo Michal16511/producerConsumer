@@ -20,9 +20,13 @@ public class Consumer implements Runnable {
     @Override
     public void run()
     {   
-        while(shop.notEmpty())
-        {  
+        while(true)
+        {
             shop.getProduct(id);
+            
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException ex) {}
         }
     }
 }
