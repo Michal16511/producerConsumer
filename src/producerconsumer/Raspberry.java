@@ -13,6 +13,6 @@ public class Raspberry implements Food{
     @Override
     public void getName()
     {
-        System.out.println("Nazwa: " + name + " numer: " + number);
+        System.out.println(" " + name + " numer: " + number);
     }
 }

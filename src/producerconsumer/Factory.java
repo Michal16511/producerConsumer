@@ -11,12 +11,10 @@ public class Factory {
     private int raspberryCounter = 0;
     Random generator = new Random();
     
-    public Factory()
-    {
-        this.index = generator.nextInt(3);
-    }
     public Food getFood()
     {
+        this.index = generator.nextInt(3);
+    
         if(food[index].equalsIgnoreCase("Apple"))
         {
             this.appleCounter++;
